@@ -2,24 +2,29 @@
 <html lang="en">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Wedding Invitation</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Allura&family=Great+Vibes&family=Poppins:wght@300;400;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
+
 body {
   margin: 0;
-  overflow: hidden;
   font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;   /* ✅ FIX */
 }
 
-/* ===== EXISTING STYLES ===== */
+/* ENVELOPE */
 .envelope {
   width: 100%;
   height: 100vh;
   background: url('cg.png') center/cover no-repeat;
+  position: fixed;
+  z-index: 10;
 }
 
+/* CLICK AREA */
 .click-area {
   position: absolute;
   top: 45%;
@@ -31,54 +36,100 @@ body {
   cursor: pointer;
 }
 
+/* CONTENT */
 .content {
   display: none;
-  overflow-y: auto;
-  height: 100vh;
+  padding-bottom: 50px;
+  animation: fadeIn 1s;
 }
 
-/* ===== WISH BUTTON ===== */
-.wish-btn {
-  padding: 12px 22px;
-  background: #25D366;
-  color: #fff;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* ===== POPUP ===== */
-.popup {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.6);
-  display: none;
-  justify-content: center;
-  align-items: center;
+/* SECTION */
+.section {
+  text-align: center;
+  padding: 60px 25px 30px;
 }
 
-.popup-box {
+/* GANESHA */
+.ganesha-box {
+  width: 110px;
+  height: 110px;
+  margin: 25px auto;
+  border-radius: 50%;
   background: #fff;
-  padding: 20px;
-  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ganesha {
+  width: 65px;
+}
+
+.ganesha-text {
+  font-size: 13px;
+  font-family: 'Playfair Display', serif;
+  color: #2f6f67;
+}
+
+/* NAMES */
+.names {
+  font-family: 'Allura', cursive;
+  font-size: 3.6rem;
+  color: #2f6f67;
+}
+
+.with-text {
+  font-family: 'Allura', cursive;
+  font-size: 2.5rem;
+  color: #2f6f67;
+}
+
+.date {
+  color: #1f6f6f;
+  font-weight: 600;
+}
+
+/* COUPLE */
+.couple-img {
   width: 85%;
   max-width: 320px;
+  border-radius: 30px;
+}
+
+.invite-text {
+  font-family: 'Allura', cursive;
+  font-size: 2.5rem;
+}
+
+/* CARDS */
+.card {
+  background: #dbeeee;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 20px;
   text-align: center;
 }
 
-.popup-box input,
-.popup-box textarea {
-  width: 100%;
+.map-btn {
+  display: inline-block;
   margin-top: 10px;
-  padding: 10px;
+  padding: 10px 18px;
+  background: #2f6f67;
+  color: #fff;
+  border-radius: 25px;
+  text-decoration: none;
 }
 
-/* ===== WISH CARDS ===== */
+/* WISHES */
 .wish-container {
   display: flex;
   gap: 15px;
-  overflow: hidden;
+  overflow-x: auto;   /* ✅ FIX */
   padding: 20px;
 }
 
@@ -87,20 +138,24 @@ body {
   background: #fff;
   padding: 15px;
   border-radius: 15px;
-  animation: scrollLeft 20s linear infinite;
 }
 
-@keyframes scrollLeft {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
+/* CALENDAR */
+.calendar-btn {
+  padding: 14px 24px;
+  background: #000;
+  color: #fff;
+  border-radius: 30px;
+  text-decoration: none;
 }
+
 </style>
 </head>
 
 <body>
 
 <audio id="music" loop>
-<source src="AUD-20260406-WA0005.mp3">
+  <source src="AUD-20260406-WA0005.mp3" type="audio/mpeg">
 </audio>
 
 <div class="envelope" id="env">
@@ -109,99 +164,74 @@ body {
 
 <div class="content" id="content">
 
-  <h2 style="text-align:center;">Karthik ❤️ Priya</h2>
+  <div class="section">
 
-  <!-- WISHES DISPLAY -->
+    <div class="ganesha-box">
+      <img src="ganesha.png.jpg" class="ganesha">
+    </div>
+
+    <h3 class="ganesha-text">||Shree Ganeshaya Namaha||</h3>
+
+    <div class="names">Karthik</div>
+    <p>S/o Mr. Srinivas Reddy & Mrs. Lakshmi Reddy</p>
+
+    <div class="with-text">With</div>
+
+    <div class="names">Priya</div>
+    <p>D/o Mr. Suresh Nair & Mrs. Anitha Nair</p>
+
+    <div class="date">
+      Sunday, 26 April 2026, 12:00 Noon
+    </div>
+
+    <img src="couple.jpg" class="couple-img">
+
+    <p class="invite-text">
+      With joyful hearts,<br>
+      we invite you to share in our wedding celebration
+    </p>
+
+  </div>
+
+  <div class="card">
+    <h3>Wedding</h3>
+    <p>Sri Venkateshwara Kalyana Mantapa<br>Bangalore</p>
+
+    <a href="https://maps.google.com/?q=Sri+Venkateshwara+Kalyana+Mantapa+Bangalore"
+       target="_blank"
+       class="map-btn">📍 View Location</a>
+  </div>
+
+  <div class="card">
+    <h3>Reception</h3>
+    <p>Royal Orchid Convention Centre<br>Bangalore</p>
+
+    <a href="https://maps.google.com/?q=Royal+Orchid+Convention+Centre+Bangalore"
+       target="_blank"
+       class="map-btn">📍 View Location</a>
+  </div>
+
   <div class="wish-container" id="wishContainer"></div>
 
-  <!-- CALENDAR -->
-  <div style="text-align:center;">
-    <a href="wedding.ics">📅 Add to Calendar</a>
+  <div style="text-align:center; margin:30px;">
+    <a href="wedding.ics" class="calendar-btn">📅 Add to Calendar</a>
   </div>
 
-  <!-- SEND BUTTON -->
-  <div style="text-align:center; margin:20px;">
-    <button class="wish-btn" onclick="openWishPopup()">💬 Send Wishes</button>
-  </div>
-
-</div>
-
-<!-- POPUP -->
-<div id="wishPopup" class="popup">
-  <div class="popup-box">
-    <h3>Send Wishes</h3>
-    <input id="userName" placeholder="Your Name">
-    <textarea id="userWish" placeholder="Your Wish"></textarea>
-    <button onclick="sendWish()">Send</button>
-    <button onclick="closeWishPopup()">Close</button>
-  </div>
 </div>
 
 <script>
-function openInvite(){
-  document.getElementById("env").style.display="none";
-  document.getElementById("content").style.display="block";
-  document.getElementById("music").play();
-}
+function openInvite() {
+  let env = document.getElementById("env");
 
-function openWishPopup(){
-  document.getElementById("wishPopup").style.display="flex";
-}
-
-function closeWishPopup(){
-  document.getElementById("wishPopup").style.display="none";
-}
-</script>
-
-<!-- FIREBASE -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot, query, where } 
-from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
-
-const app = initializeApp({
-  apiKey:"AIzaSyDN9Et8HDu3dSwrPkWQyLwgI3Jo2LIk5os",
-  authDomain:"wedding-invites-e922c.firebaseapp.com",
-  projectId:"wedding-invites-e922c"
-});
-
-const db = getFirestore(app);
-const eventId = "karthik-priya";
-
-/* SAVE */
-window.sendWish = async function(){
-  let name = document.getElementById("userName").value;
-  let wish = document.getElementById("userWish").value;
-
-  if(!name || !wish){
-    alert("Fill all fields");
-    return;
+  let music = document.getElementById("music");
+  if (music) {
+    music.volume = 0.3;
+    music.play();
   }
 
-  await addDoc(collection(db,"wishes"),{
-    name,
-    message:wish,
-    eventId,
-    time:Date.now()
-  });
-
-  closeWishPopup();
-};
-
-/* DISPLAY */
-const q = query(
-  collection(db,"wishes"),
-  where("eventId","==",eventId)
-);
-
-onSnapshot(q,(snap)=>{
-  let c=document.getElementById("wishContainer");
-  c.innerHTML="";
-  snap.forEach(doc=>{
-    let d=doc.data();
-    c.innerHTML+=`<div class="wish-card"><b>${d.name}</b><p>${d.message}</p></div>`;
-  });
-});
+  env.style.display = "none";
+  document.getElementById("content").style.display = "block";
+}
 </script>
 
 </body>
