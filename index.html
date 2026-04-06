@@ -242,6 +242,27 @@ body {
   max-width: 320px;
   border-radius: 30px;
 }
+  /* WISHES SCROLL */
+.wish-container {
+  display: flex;
+  gap: 15px;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.wish-card {
+  min-width: 220px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  animation: scrollLeft 20s linear infinite;
+}
+
+@keyframes scrollLeft {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
 
 /* TEXT BELOW IMAGE */
 .invite-text {
@@ -326,6 +347,8 @@ Bangalore, Karnataka</p>
   </div>
 
 <!-- 📅 ADD CALENDAR HERE -->
+  <!-- 💬 WISHES SECTION -->
+<div class="wish-container" id="wishContainer"></div>
 <div style="text-align:center; margin: 30px 0;">
 <a href="wedding.ics" class="calendar-btn">
 📅 Add to Calendar
@@ -356,5 +379,52 @@ function openInvite() {
 }
 </script>
 
+<!-- 🔥 ADD THIS FULL BLOCK HERE -->
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+import { getFirestore, collection, onSnapshot, query, where, orderBy } 
+from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDN9Et8HDu3dSwrPkWQyLwgI3Jo2LIk5os",
+  authDomain: "wedding-invites-e922c.firebaseapp.com",
+  projectId: "wedding-invites-e922c"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+/* COUPLE ID */
+const eventId = "karthik-priya";
+
+/* SHOW WISHES */
+const q = query(
+  collection(db, "wishes"),
+  where("eventId", "==", eventId),
+  orderBy("time", "desc")
+);
+
+onSnapshot(q, (snapshot) => {
+  let container = document.getElementById("wishContainer");
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  snapshot.forEach(doc => {
+    let data = doc.data();
+
+    container.innerHTML += `
+      <div class="wish-card">
+        <strong>${data.name}</strong>
+        <p>${data.message}</p>
+      </div>
+    `;
+  });
+});
+
+</script>
+
 </body>
 </html>
+
