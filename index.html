@@ -5,25 +5,112 @@
 
 <title>Wedding Invitation</title>
 
+<!-- UPDATED FONTS -->
 <link href="https://fonts.googleapis.com/css2?family=Allura&family=Great+Vibes&family=Poppins:wght@300;400;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
-
 body {
   margin: 0;
+  overflow: hidden;
   font-family: 'Poppins', sans-serif;
-  overflow-x: hidden;   /* ✅ FIX */
 }
 
-/* ENVELOPE */
+/* Circle container */
+.ganesha-box {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  margin: 25px auto;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+/* Rotating border */
+.ganesha-box::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 60%;
+  background: conic-gradient(
+    #ff9800,
+    #ff5722,
+    #ff9800,
+    transparent 60%
+  );
+  animation: rotateBorder 3s linear infinite;
+  z-index: -1;
+}
+
+/* Inner layer */
+.ganesha-box::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  background: #ffffff;
+  border-radius: 0%;
+  z-index: -1;
+}
+  .map-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 18px;
+  background: #2f6f67;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 25px;
+  font-size: 13px;
+  transition: 0.3s;
+}
+
+.map-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Ganesha image */
+.ganesha {
+  width: 65px;
+}
+
+/* Animation */
+@keyframes rotateBorder {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ===== ENVELOPE (UNCHANGED) ===== */
 .envelope {
   width: 100%;
   height: 100vh;
   background: url('cg.png') center/cover no-repeat;
-  position: fixed;
-  z-index: 10;
+  position: relative;
+}
+.calendar-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 14px 24px;
+  background: #000;
+  color: #fff;
+
+  border-radius: 30px;
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transition: 0.3s ease;
 }
 
+.calendar-btn:hover {
+  transform: scale(1.05);
+}
 /* CLICK AREA */
 .click-area {
   position: absolute;
@@ -36,10 +123,36 @@ body {
   cursor: pointer;
 }
 
-/* CONTENT */
+/* TEXT */
+.bottom-text {
+  position: absolute;
+  top: 68%;
+  width: 100%;
+  text-align: center;
+  font-family: 'Great Vibes', cursive;
+  font-size: 28px;
+  color: #fdf6e3;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.7);
+}
+
+/* ===== ANIMATION ===== */
+.fade-out {
+  animation: fadeZoom 1s forwards;
+}
+
+@keyframes fadeZoom {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.15); }
+}
+
+/* ===== CONTENT PAGE ===== */
 .content {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
   display: none;
-  padding-bottom: 50px;
+  overflow-y: auto;
   animation: fadeIn 1s;
 }
 
@@ -48,62 +161,60 @@ body {
   to { opacity: 1; }
 }
 
-/* SECTION */
+/* ===== SECTION ===== */
 .section {
   text-align: center;
   padding: 60px 25px 30px;
 }
 
-/* GANESHA */
-.ganesha-box {
-  width: 110px;
-  height: 110px;
-  margin: 25px auto;
-  border-radius: 50%;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.ganesha {
-  width: 65px;
-}
-
+/* ===== GANESHA TEXT ===== */
 .ganesha-text {
+  margin-top: 12px;
   font-size: 13px;
   font-family: 'Playfair Display', serif;
+  font-weight: 400;
   color: #2f6f67;
+  letter-spacing: 1px;
 }
 
-/* NAMES */
+/* ===== NAMES (UPDATED) ===== */
 .names {
   font-family: 'Allura', cursive;
   font-size: 3.6rem;
   color: #2f6f67;
+  margin: 5px 0;
+  line-height: 1.1;
+}
+  .with-text {
+  font-family: 'Allura', cursive;  /* same font */
+  font-size: 2.8rem;               /* smaller than names */
+  color: #2f6f67;                  /* same color */
+  margin: 5px 0;
+  }
+
+/* SMALL TEXT */
+.section p {
+  margin: 6px 0;
+  font-size: 14px;
+  color: #666;
 }
 
-.with-text {
-  font-family: 'Allura', cursive;
-  font-size: 2.5rem;
-  color: #2f6f67;
-}
-
+/* DATE */
 .date {
   color: #1f6f6f;
   font-weight: 600;
+  margin-top: 10px;
+}
+  .invite-text {
+  margin-top: 20px;
+  line-height: 1.6;
 }
 
-/* COUPLE */
-.couple-img {
-  width: 85%;
-  max-width: 320px;
-  border-radius: 30px;
-}
-
-.invite-text {
+/* 🔥 NEW STYLE (same as names) */
+.styled-text {
   font-family: 'Allura', cursive;
-  font-size: 2.5rem;
+  font-size: 2.8rem;
+  color: #000;   /* black color */
 }
 
 /* CARDS */
@@ -112,24 +223,30 @@ body {
   margin: 20px;
   padding: 20px;
   border-radius: 20px;
+}
+  .card {
+  background: #dbeeee;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+/* ===== COUPLE IMAGE ===== */
+.couple-section {
   text-align: center;
+  margin-top: 30px;
 }
 
-.map-btn {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 10px 18px;
-  background: #2f6f67;
-  color: #fff;
-  border-radius: 25px;
-  text-decoration: none;
+.couple-img {
+  width: 85%;
+  max-width: 320px;
+  border-radius: 30px;
 }
-
-/* WISHES */
+  /* WISHES SCROLL */
 .wish-container {
   display: flex;
   gap: 15px;
-  overflow-x: auto;   /* ✅ FIX */
+  overflow: hidden;
   padding: 20px;
 }
 
@@ -138,34 +255,40 @@ body {
   background: #fff;
   padding: 15px;
   border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  animation: scrollLeft 20s linear infinite;
 }
 
-/* CALENDAR */
-.calendar-btn {
-  padding: 14px 24px;
-  background: #000;
-  color: #fff;
-  border-radius: 30px;
-  text-decoration: none;
+@keyframes scrollLeft {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
 }
 
+/* TEXT BELOW IMAGE */
+.invite-text {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #444;
+  line-height: 1.6;
+}
 </style>
 </head>
 
 <body>
-
-<audio id="music" loop>
+<!-- 🎵 ADD THIS AUDIO -->
+<audio id="music" loop playsinline>
   <source src="AUD-20260406-WA0005.mp3" type="audio/mpeg">
 </audio>
-
+<!-- ENVELOPE -->
 <div class="envelope" id="env">
   <div class="click-area" onclick="openInvite()"></div>
 </div>
 
+<!-- WEDDING PAGE -->
 <div class="content" id="content">
 
   <div class="section">
-
+    
     <div class="ganesha-box">
       <img src="ganesha.png.jpg" class="ganesha">
     </div>
@@ -175,7 +298,7 @@ body {
     <div class="names">Karthik</div>
     <p>S/o Mr. Srinivas Reddy & Mrs. Lakshmi Reddy</p>
 
-    <div class="with-text">With</div>
+    <p class="with-text">With</p>
 
     <div class="names">Priya</div>
     <p>D/o Mr. Suresh Nair & Mrs. Anitha Nair</p>
@@ -183,55 +306,123 @@ body {
     <div class="date">
       Sunday, 26 April 2026, 12:00 Noon
     </div>
+    <!-- 💑 COUPLE IMAGE SECTION -->
+<div class="couple-section">
 
-    <img src="couple.jpg" class="couple-img">
+  <img src="couple.jpg" class="couple-img">
 
-    <p class="invite-text">
-      With joyful hearts,<br>
-      we invite you to share in our wedding celebration
-    </p>
+<p class="invite-text styled-text">
+  With joyful hearts,<br>
+  we invite you to share in our wedding celebration
+</p>
 
+</div>
   </div>
 
   <div class="card">
-    <h3>Wedding</h3>
-    <p>Sri Venkateshwara Kalyana Mantapa<br>Bangalore</p>
+  <h3>Wedding</h3>
 
-    <a href="https://maps.google.com/?q=Sri+Venkateshwara+Kalyana+Mantapa+Bangalore"
-       target="_blank"
-       class="map-btn">📍 View Location</a>
+  <p>
+  Sri Venkateshwara Kalyana Mantapa<br>
+  Jayanagar, Bangalore
+  </p>
+
+  <a href="https://maps.google.com/?q=Sri+Venkateshwara+Kalyana+Mantapa+Bangalore" 
+     target="_blank" 
+     class="map-btn">
+     📍 View Location
+  </a>
   </div>
 
   <div class="card">
     <h3>Reception</h3>
-    <p>Royal Orchid Convention Centre<br>Bangalore</p>
-
-    <a href="https://maps.google.com/?q=Royal+Orchid+Convention+Centre+Bangalore"
-       target="_blank"
-       class="map-btn">📍 View Location</a>
+    <p>Royal Orchid Convention Centre
+Near Hebbal Flyover
+Bangalore, Karnataka</p>
+    <a href="https://maps.google.com/?q=Sri+Venkateshwara+Kalyana+Mantapa+Bangalore" 
+     target="_blank" 
+     class="map-btn">
+     📍 View Location
+    </a>
   </div>
 
-  <div class="wish-container" id="wishContainer"></div>
+<!-- 📅 ADD CALENDAR HERE -->
+  <!-- 💬 WISHES SECTION -->
+<div class="wish-container" id="wishContainer"></div>
+<div style="text-align:center; margin: 30px 0;">
+<a href="wedding.ics" class="calendar-btn">
+📅 Add to Calendar
+  </a>
+</div>
 
-  <div style="text-align:center; margin:30px;">
-    <a href="wedding.ics" class="calendar-btn">📅 Add to Calendar</a>
-  </div>
-
+</div>
 </div>
 
 <script>
 function openInvite() {
   let env = document.getElementById("env");
 
-  let music = document.getElementById("music");
-  if (music) {
-    music.volume = 0.3;
-    music.play();
-  }
+  try {
+    let music = document.getElementById("music");
+    if (music) {
+      music.volume = 0.3;   // 👈 ADD HERE
+      music.play();
+    }
+  } catch (e) {}
 
-  env.style.display = "none";
-  document.getElementById("content").style.display = "block";
+  env.classList.add("fade-out");
+
+  setTimeout(() => {
+    env.style.display = "none";
+    document.getElementById("content").style.display = "block";
+  }, 900);
 }
+</script>
+
+<!-- 🔥 ADD THIS FULL BLOCK HERE -->
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+import { getFirestore, collection, onSnapshot, query, where, orderBy } 
+from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDN9Et8HDu3dSwrPkWQyLwgI3Jo2LIk5os",
+  authDomain: "wedding-invites-e922c.firebaseapp.com",
+  projectId: "wedding-invites-e922c"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+/* COUPLE ID */
+const eventId = "karthik-priya";
+
+/* SHOW WISHES */
+const q = query(
+  collection(db, "wishes"),
+  where("eventId", "==", eventId),
+  orderBy("time", "desc")
+);
+
+onSnapshot(q, (snapshot) => {
+  let container = document.getElementById("wishContainer");
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  snapshot.forEach(doc => {
+    let data = doc.data();
+
+    container.innerHTML += `
+      <div class="wish-card">
+        <strong>${data.name}</strong>
+        <p>${data.message}</p>
+      </div>
+    `;
+  });
+});
+
 </script>
 
 </body>
