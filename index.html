@@ -111,17 +111,20 @@ body {
 .calendar-btn:hover {
   transform: scale(1.05);
 }
-/* CLICK AREA */
+/* CLICK AREA (FIXED ALIGNMENT) */
 .click-area {
   position: absolute;
-  top: calc(45% - 20px);
   left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
-  width: 150px;
-  height: 150px;
+
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   cursor: pointer;
-  outline: none;
+
+  /* 🔥 MOVE UP TO MATCH SEAL */
+  margin-top: -70px;   /* adjust if needed */
 }
 
 /* 🔥 PULSING RING */
