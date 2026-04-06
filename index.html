@@ -111,17 +111,58 @@ body {
 .calendar-btn:hover {
   transform: scale(1.05);
 }
-/* CLICK AREA (FIXED ALIGNMENT) */
+/* ❤️ HEART CLICK AREA */
 .click-area {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) rotate(-45deg);
 
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
+  width: 120px;
+  height: 120px;
   cursor: pointer;
+
+  background: rgba(255,255,255,0.08);
+
+  /* 🔥 adjust position to match seal */
+  margin-top: -70px;
+
+  animation: heartPulse 1.5s infinite;
+}
+
+/* heart shape */
+.click-area::before,
+.click-area::after {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+}
+
+.click-area::before {
+  top: -60px;
+  left: 0;
+}
+
+.click-area::after {
+  left: 60px;
+  top: 0;
+}
+
+/* animation */
+@keyframes heartPulse {
+  0% {
+    transform: translate(-50%, -50%) rotate(-45deg) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(-45deg) scale(1.1);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(-45deg) scale(1);
+  }
+}
 
   /* 🔥 MOVE UP TO MATCH SEAL */
   margin-top: -70px;   /* adjust if needed */
