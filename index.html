@@ -144,19 +144,7 @@ body {
   0% { opacity: 1; transform: scale(1); }
   100% { opacity: 0; transform: scale(1.15); }
 }
-  .floral-footer {
-  position: fixed;     /* stays at bottom always */
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-
-  z-index: 5;          /* above background */
-  pointer-events: none; /* no blocking clicks */
-  }
-.content {
-  padding-bottom: 120px;  /* adjust based on image height */
-}
+  
 /* ===== CONTENT PAGE ===== */
 .content {
   position: fixed;
@@ -436,6 +424,5 @@ onSnapshot(q, (snapshot) => {
 });
 
 </script>
-<img src="floral-bottom.png" class="floral-footer">
 </body>
 </html>
