@@ -13,8 +13,29 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
-/* ===== EXISTING STYLES (UNCHANGED) ===== */
-/* keep your current styles as is */
+/* ===== EXISTING STYLES ===== */
+.envelope {
+  width: 100%;
+  height: 100vh;
+  background: url('cg.png') center/cover no-repeat;
+}
+
+.click-area {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.content {
+  display: none;
+  overflow-y: auto;
+  height: 100vh;
+}
 
 /* ===== WISH BUTTON ===== */
 .wish-btn {
@@ -23,22 +44,18 @@ body {
   color: #fff;
   border: none;
   border-radius: 30px;
-  font-size: 14px;
   cursor: pointer;
 }
 
 /* ===== POPUP ===== */
 .popup {
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.6);
   display: none;
   justify-content: center;
   align-items: center;
-  z-index: 999;
 }
 
 .popup-box {
@@ -82,31 +99,29 @@ body {
 
 <body>
 
-<audio id="music" loop playsinline>
-  <source src="AUD-20260406-WA0005.mp3">
+<audio id="music" loop>
+<source src="AUD-20260406-WA0005.mp3">
 </audio>
 
-<!-- ENVELOPE -->
 <div class="envelope" id="env">
   <div class="click-area" onclick="openInvite()"></div>
 </div>
 
-<!-- CONTENT -->
 <div class="content" id="content">
 
-  <!-- YOUR EXISTING CONTENT (UNCHANGED) -->
+  <h2 style="text-align:center;">Karthik ❤️ Priya</h2>
 
   <!-- WISHES DISPLAY -->
   <div class="wish-container" id="wishContainer"></div>
 
   <!-- CALENDAR -->
-  <div style="text-align:center; margin: 30px 0;">
-    <a href="wedding.ics" class="calendar-btn">📅 Add to Calendar</a>
+  <div style="text-align:center;">
+    <a href="wedding.ics">📅 Add to Calendar</a>
   </div>
 
-  <!-- SEND WISH BUTTON -->
-  <div style="text-align:center; margin: 20px 0;">
-    <button class="wish-btn" onclick="openWishPopup()">💬 Send Your Wishes</button>
+  <!-- SEND BUTTON -->
+  <div style="text-align:center; margin:20px;">
+    <button class="wish-btn" onclick="openWishPopup()">💬 Send Wishes</button>
   </div>
 
 </div>
@@ -114,31 +129,27 @@ body {
 <!-- POPUP -->
 <div id="wishPopup" class="popup">
   <div class="popup-box">
-    <h3>Send Your Wishes 💌</h3>
+    <h3>Send Wishes</h3>
     <input id="userName" placeholder="Your Name">
-    <textarea id="userWish" placeholder="Type your wishes..."></textarea>
-
-    <div style="margin-top:15px;">
-      <button onclick="sendWish()">Send</button>
-      <button onclick="closeWishPopup()">Close</button>
-    </div>
+    <textarea id="userWish" placeholder="Your Wish"></textarea>
+    <button onclick="sendWish()">Send</button>
+    <button onclick="closeWishPopup()">Close</button>
   </div>
 </div>
 
-<!-- EXISTING SCRIPT -->
 <script>
-function openInvite() {
-  document.getElementById("env").style.display = "none";
-  document.getElementById("content").style.display = "block";
+function openInvite(){
+  document.getElementById("env").style.display="none";
+  document.getElementById("content").style.display="block";
   document.getElementById("music").play();
 }
 
-function openWishPopup() {
-  document.getElementById("wishPopup").style.display = "flex";
+function openWishPopup(){
+  document.getElementById("wishPopup").style.display="flex";
 }
 
-function closeWishPopup() {
-  document.getElementById("wishPopup").style.display = "none";
+function closeWishPopup(){
+  document.getElementById("wishPopup").style.display="none";
 }
 </script>
 
@@ -148,55 +159,47 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/fireba
 import { getFirestore, collection, addDoc, onSnapshot, query, where } 
 from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDN9Et8HDu3dSwrPkWQyLwgI3Jo2LIk5os",
-  authDomain: "wedding-invites-e922c.firebaseapp.com",
-  projectId: "wedding-invites-e922c"
-};
+const app = initializeApp({
+  apiKey:"AIzaSyDN9Et8HDu3dSwrPkWQyLwgI3Jo2LIk5os",
+  authDomain:"wedding-invites-e922c.firebaseapp.com",
+  projectId:"wedding-invites-e922c"
+});
 
-const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
 const eventId = "karthik-priya";
 
-/* SEND WISH */
-window.sendWish = async function() {
+/* SAVE */
+window.sendWish = async function(){
   let name = document.getElementById("userName").value;
   let wish = document.getElementById("userWish").value;
 
-  if (!name || !wish) {
-    alert("Please fill all fields");
+  if(!name || !wish){
+    alert("Fill all fields");
     return;
   }
 
-  await addDoc(collection(db, "wishes"), {
+  await addDoc(collection(db,"wishes"),{
     name,
-    message: wish,
+    message:wish,
     eventId,
-    time: Date.now()
+    time:Date.now()
   });
 
   closeWishPopup();
 };
 
-/* DISPLAY WISHES */
+/* DISPLAY */
 const q = query(
-  collection(db, "wishes"),
-  where("eventId", "==", eventId)
+  collection(db,"wishes"),
+  where("eventId","==",eventId)
 );
 
-onSnapshot(q, (snapshot) => {
-  let container = document.getElementById("wishContainer");
-  container.innerHTML = "";
-
-  snapshot.forEach(doc => {
-    let data = doc.data();
-    container.innerHTML += `
-      <div class="wish-card">
-        <strong>${data.name}</strong>
-        <p>${data.message}</p>
-      </div>
-    `;
+onSnapshot(q,(snap)=>{
+  let c=document.getElementById("wishContainer");
+  c.innerHTML="";
+  snap.forEach(doc=>{
+    let d=doc.data();
+    c.innerHTML+=`<div class="wish-card"><b>${d.name}</b><p>${d.message}</p></div>`;
   });
 });
 </script>
