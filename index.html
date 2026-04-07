@@ -225,6 +225,12 @@ body {
   background: #ffffff;  
   z-index: 1;  
 }  
+  .countdown {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #2f6f67;
+  font-weight: 500;
+  }
 /* 🌿 FIXED SMOOTH BACKGROUND */  
 .content::before {  
   content: "";  
@@ -417,6 +423,7 @@ body {
 <div class="date">  
   Sunday, 26 April 2026, 12:00 Noon  
 </div>  
+  <div id="countdown" class="countdown"></div>
 <!-- 💑 COUPLE IMAGE SECTION -->
 
 <div class="couple-section">    <img src="couple.jpg" class="couple-img">  <p class="invite-text styled-text">  
@@ -477,7 +484,27 @@ function openInvite() {
     document.getElementById("content").style.display = "block";  
   }, 900);  
 }  
-</script>  <!-- 🔥 ADD THIS FULL BLOCK HERE -->  <script type="module">  
+</script> 
+  <script>
+const weddingDate = new Date("April 26, 2026 12:00:00").getTime();
+
+setInterval(() => {
+  const now = new Date().getTime();
+  const diff = weddingDate - now;
+
+  if (diff < 0) {
+    document.getElementById("countdown").innerHTML = "🎉 It's Wedding Time!";
+    return;
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+  document.getElementById("countdown").innerHTML =
+    `⏳ ${days} Days ${hours} Hours ${minutes} Minutes`;
+}, 1000);
+</script> <!-- 🔥 ADD THIS FULL BLOCK HERE -->  <script type="module">  
   
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";  
 import { getFirestore, collection, onSnapshot, query, where, orderBy }   
