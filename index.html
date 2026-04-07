@@ -44,7 +44,12 @@ body {
   animation: rotateBorder 3s linear infinite;
   z-index: -1;
 }
-
+.address-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+}
 /* Inner layer */
 .ganesha-box::after {
   content: "";
@@ -267,16 +272,6 @@ body {
   gap: 20px;
 }
 
-/* LEFT SIDE (DATE BLOCK) */
-.card::before {
-  content: "";
-  width: 2px;
-  background: #bfcfcf;
-  position: absolute;
-  left: 35px;
-  top: 0;
-  bottom: 0;
-}
 
 /* LEFT DATE */
 .timeline-date {
@@ -340,7 +335,11 @@ body {
   font-size: 2.8rem;
   color: #000;   /* black color */
 }
-
+.card h3 {
+  font-weight: 500;
+  font-size: 16px;
+  color: #444;
+}
 .card {
   background: transparent;   /* ❌ remove box */
   margin: 30px 20px;
@@ -452,7 +451,7 @@ body {
   <div class="card">
   <h3>Wedding</h3>
 
-  <p>
+  <p class="address-text">
   Sri Venkateshwara Kalyana Mantapa<br>
   Jayanagar, Bangalore
   </p>
@@ -466,7 +465,8 @@ body {
 
   <div class="card">
     <h3>Reception</h3>
-    <p>Royal Orchid Convention Centre
+    <p class="address-text">
+      Royal Orchid Convention Centre
 Near Hebbal Flyover
 Bangalore, Karnataka</p>
     <a href="https://maps.google.com/?q=Royal+Orchid+Convention+Centre+Hebbal+Bangalore" 
