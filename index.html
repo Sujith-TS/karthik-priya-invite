@@ -236,7 +236,7 @@ body {
 /* 🌿 FIXED SMOOTH BACKGROUND */  
 .content::before {  
   content: "";  
-  position: absolute;   /* 🔥 CHANGE from fixed → absolute */  
+  position: fixed;   /* 🔥 CHANGE from fixed → absolute */  
   top: 0;  
   left: 0;  
   width: 100%;  
@@ -245,7 +245,7 @@ body {
   background: url('leaf.png') center/cover no-repeat;  
   
   opacity: 0.79;  
-  z-index: -1;  
+  z-index: 0;  
 }  
   
 @keyframes fadeIn {  
