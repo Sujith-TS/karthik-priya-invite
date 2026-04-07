@@ -49,7 +49,9 @@ body {
   100% { transform: rotate(360deg); }
 }
 
-.ganesha { width: 65px; }
+.ganesha {
+  width: 65px;
+}
 
 /* Envelope */
 .envelope {
@@ -97,7 +99,7 @@ body {
   height: 100%;
   display: none;
   overflow-y: auto;
-  background: #fff;
+  background: #ffffff;
 }
 
 .content::before {
@@ -105,7 +107,7 @@ body {
   position: absolute;
   inset: 0;
   background: url('leaf.png') center/cover no-repeat;
-  opacity: 0.2;
+  opacity: 0.15;   /* ✅ FIXED */
   z-index: -1;
 }
 
@@ -115,6 +117,16 @@ body {
   padding: 60px 25px 30px;
 }
 
+/* Ganesh text */
+.ganesha-text {
+  margin-top: 12px;
+  font-size: 13px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  color: #2f6f67;  /* ✅ FIXED */
+  letter-spacing: 1px;
+}
+
 /* Names */
 .names {
   font-family: 'Allura', cursive;
@@ -122,24 +134,29 @@ body {
   color: #2f6f67;
 }
 
+/* With text */
 .with-text {
   font-family: 'Allura', cursive;
-  font-size: 2.5rem;
+  font-size: 2.8rem;
+  color: #2f6f67;  /* ✅ FIXED */
+  margin: 5px 0;
 }
 
+/* Date */
 .date {
   color: #1f6f6f;
   font-weight: 600;
+  margin-top: 10px;
 }
 
-/* Couple */
+/* Couple image */
 .couple-img {
   width: 85%;
   max-width: 320px;
   border-radius: 30px;
 }
 
-/* Cards (FIXED) */
+/* Cards */
 .card {
   margin: 30px 25px;
   text-align: left;
@@ -156,7 +173,7 @@ body {
   color: #666;
 }
 
-/* Map link */
+/* Direction */
 .direction-link {
   font-size: 12px;
   color: #9aa;
@@ -194,7 +211,7 @@ body {
   <img src="ganesha.png.jpg" class="ganesha">
 </div>
 
-<h3>||Shree Ganeshaya Namaha||</h3>
+<h3 class="ganesha-text">||Shree Ganeshaya Namaha||</h3>
 
 <div class="names">Karthik</div>
 <p>S/o Mr. Srinivas Reddy & Mrs. Lakshmi Reddy</p>
@@ -204,7 +221,7 @@ body {
 <div class="names">Priya</div>
 <p>D/o Mr. Suresh Nair & Mrs. Anitha Nair</p>
 
-<div class="date">Sunday, 26 April 2026</div>
+<div class="date">Sunday, 26 April 2026, 12:00 Noon</div>
 
 <img src="couple.jpg" class="couple-img">
 
@@ -215,7 +232,7 @@ body {
   <h3>Wedding</h3>
   <p class="address-text">
     Sri Venkateshwara Kalyana Mantapa<br>
-    Bangalore
+    Jayanagar, Bangalore
   </p>
   <a href="https://maps.google.com/?q=Sri+Venkateshwara+Kalyana+Mantapa+Bangalore" target="_blank" class="direction-link">
     📍 Direction
@@ -227,7 +244,7 @@ body {
   <h3>Reception</h3>
   <p class="address-text">
     Royal Orchid Convention Centre<br>
-    Bangalore
+    Near Hebbal Flyover, Bangalore
   </p>
   <a href="https://maps.google.com/?q=Royal+Orchid+Convention+Centre+Hebbal+Bangalore" target="_blank" class="direction-link">
     📍 Direction
