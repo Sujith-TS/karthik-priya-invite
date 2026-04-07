@@ -252,14 +252,9 @@ body {
   text-align: center;  
   padding: 60px 25px 30px;  
 }  
-  /* 📍 TIMELINE LAYOUT */  
-.card {  
-  display: flex;  
-  align-items: flex-start;  
-  gap: 20px;  
-}  
+
   
-/* LEFT SIDE (DATE BLOCK)   
+/* LEFT SIDE (DATE BLOCK)  */ 
 .card::before {  
   content: "";  
   width: 2px;  
@@ -327,12 +322,27 @@ body {
   color: #000;   /* black color */  
 }  
   
-.card {  
-  background: transparent;   /* ❌ remove box */  
-  margin: 30px 20px;  
-  padding: 0;  
-  border-radius: 0;  
-}  
+.card {
+  position: relative;
+  margin: 30px 25px;
+  padding: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+
+  /* optional clean look */
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(6px);
+}
+  .card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: url('leaf.png') center/cover no-repeat;
+  opacity: 0.15;
+
+  z-index: -1;
+  }
   
 /* ===== COUPLE IMAGE ===== */  
 .couple-section {  
