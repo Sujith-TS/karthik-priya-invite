@@ -260,6 +260,36 @@ body {
   text-align: center;
   padding: 60px 25px 30px;
 }
+  /* 📍 TIMELINE LAYOUT */
+.card {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+/* LEFT SIDE (DATE BLOCK) */
+.card::before {
+  content: "";
+  width: 2px;
+  background: #bfcfcf;
+  position: absolute;
+  left: 35px;
+  top: 0;
+  bottom: 0;
+}
+
+/* LEFT DATE */
+.timeline-date {
+  width: 60px;
+  text-align: center;
+  font-size: 14px;
+  color: #777;
+}
+
+/* RIGHT CONTENT */
+.timeline-content {
+  flex: 1;
+}
 
 /* ===== GANESHA TEXT ===== */
 .ganesha-text {
@@ -311,18 +341,11 @@ body {
   color: #000;   /* black color */
 }
 
-/* CARDS */
 .card {
-  background: #dbeeee;
-  margin: 20px;
-  padding: 20px;
-  border-radius: 20px;
-}
-  .card {
-  background: #dbeeee;
-  margin: 20px;
-  padding: 20px;
-  border-radius: 20px;
+  background: transparent;   /* ❌ remove box */
+  margin: 30px 20px;
+  padding: 0;
+  border-radius: 0;
 }
 
 /* ===== COUPLE IMAGE ===== */
