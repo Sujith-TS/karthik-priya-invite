@@ -20,7 +20,12 @@ body {
   justify-content: center;  
   z-index: 1;  
 }  
-  
+  .section,
+.card,
+.couple-section {
+  position: relative;
+  z-index: 1;
+}
 /* Rotating border */  
 .ganesha-box::before {  
   content: "";  
@@ -222,7 +227,7 @@ body {
   overflow-y: auto;  
   animation: fadeIn 1s;  
   
-  background: #ffffff;  
+  background: transparent;  
   z-index: 1;  
 }  
   .countdown {
