@@ -327,9 +327,12 @@ body {
   background: url('leaf.png') center/cover no-repeat;
   opacity: 0.15;
 
-  z-index: -1;
+  z-index: 0;
   }
-  
+  .card > * {
+  position: relative;
+  z-index: 1;
+  }
 /* ===== COUPLE IMAGE ===== */  
 .couple-section {  
   text-align: center;  
