@@ -231,25 +231,7 @@ body {
   color: #2f6f67;
   font-weight: 500;
   }
-  <!-- 🔥 IMAGE SLIDER START -->
-<div class="slider">
-  <div class="slide-track">
-    <img src="img1.jpg" />
-    <img src="img2.jpg" />
-    <img src="img3.jpg" />
-    <img src="img4.jpg" />
-    <img src="img5.jpg" />
-    <img src="img6.jpg" />
-
-    <!-- Duplicate for smooth loop -->
-    <img src="img1.jpg" />
-    <img src="img2.jpg" />
-    <img src="img3.jpg" />
-    <img src="img4.jpg" />
-    <img src="img5.jpg" />
-    <img src="img6.jpg" />
-  </div>
-</div>
+  
 <!-- 🔥 IMAGE SLIDER END -->
 /* 🌿 FIXED SMOOTH BACKGROUND */  
 .content::before {  
@@ -314,7 +296,31 @@ body {
   color: #2f6f67;                  /* same color */  
   margin: 5px 0;  
   }  
-  
+  /* 🔥 IMAGE SLIDER CSS */
+.slider {
+  overflow: hidden;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.slide-track {
+  display: flex;
+  width: calc(200px * 12);
+  animation: scroll 40s linear infinite;
+}
+
+.slide-track img {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  margin-right: 10px;
+  border-radius: 12px;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 /* SMALL TEXT */  
 .section p {  
   margin: 6px 0;  
@@ -443,7 +449,25 @@ body {
 <div class="date">  
   Sunday, 26 April 2026, 12:00 Noon  
 </div>  
-  
+  <!-- 🔥 IMAGE SLIDER START -->
+<div class="slider">
+  <div class="slide-track">
+    <img src="img1.jpg" />
+    <img src="img2.jpg" />
+    <img src="img3.jpg" />
+    <img src="img4.jpg" />
+    <img src="img5.jpg" />
+    <img src="img6.jpg" />
+
+    <!-- Duplicate for smooth loop -->
+    <img src="img1.jpg" />
+    <img src="img2.jpg" />
+    <img src="img3.jpg" />
+    <img src="img4.jpg" />
+    <img src="img5.jpg" />
+    <img src="img6.jpg" />
+  </div>
+</div>
 <!-- 💑 COUPLE IMAGE SECTION -->
 
 <div class="couple-section">    <img src="couple.jpg" class="couple-img">  <p class="invite-text styled-text">  
